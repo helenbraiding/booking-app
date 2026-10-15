@@ -1,0 +1,411 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helen's Home Braiding</title>
+    <style>
+        /* Modern Studio Aesthetic - Afro Royal Lookbook */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f7f5f2; /* Smooth Fine Sketchbook Paper */
+            color: #1a1a1a; /* Stark Deep Charcoal */
+            padding: 50px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #ffffff;
+            padding: 45px 35px;
+            border: 2px solid #1a1a1a; /* Sharp crisp liner pencil border */
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 12px 12px 0px #1a1a1a; /* Modern solid drop shadow */
+            box-sizing: border-box;
+        }
+        h2 { 
+            text-align: center; 
+            color: #1a1a1a; 
+            margin-top: 0; 
+            margin-bottom: 12px; 
+            font-weight: bold;
+            font-size: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .subtitle { 
+            text-align: center; 
+            font-size: 13px; 
+            color: #444444;
+            margin-bottom: 40px; 
+            line-height: 1.6;
+            border-bottom: 1px dashed #1a1a1a;
+            padding-bottom: 25px;
+            font-style: italic;
+        }
+        
+        .section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            background: #1a1a1a;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            padding: 6px 12px;
+            display: inline-block;
+        }
+
+        label { 
+            font-weight: bold; 
+            display: block; 
+            margin-top: 25px; 
+            margin-bottom: 8px; 
+            font-size: 14px; 
+        }
+        .label-desc {
+            font-size: 12px;
+            color: #555555;
+            margin-top: -4px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            font-style: italic;
+        }
+        select, textarea, input[type="text"], input[type="date"], input[type="number"], input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #1a1a1a;
+            border-radius: 0px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+        select:focus, textarea:focus, input[type="text"]:focus, input[type="date"]:focus, input[type="number"]:focus, input[type="tel"]:focus {
+            outline: none;
+            background-color: #faf9f5;
+        }
+        .hidden-field {
+            display: none;
+            margin-top: 15px;
+        }
+        .address-box {
+            background: #faf8f5;
+            border: 2px solid #1a1a1a;
+            padding: 15px;
+            margin-top: 12px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .rules-box {
+            background: #fdfdfd;
+            border: 2px dashed #1a1a1a;
+            padding: 20px;
+            margin-top: 35px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .rules-box ul {
+            margin: 12px 0 0 0;
+            padding-left: 18px;
+        }
+        .rules-box li {
+            margin-bottom: 10px;
+        }
+        .faith-box {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 13px;
+            font-style: italic;
+            color: #444444;
+            line-height: 1.6;
+            border-top: 1px dashed #1a1a1a;
+            padding-top: 25px;
+        }
+        button {
+            width: 100%;
+            background-color: #1a1a1a;
+            color: white;
+            border: 2px solid #1a1a1a;
+            padding: 16px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 35px;
+            transition: all 0.25s ease;
+        }
+        button:hover { 
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Helen's Home Braiding</h2>
+    <p class="subtitle">An invitation to Black Afro Queens and Kings. Comfort in my home or in your home. Perfection isn't a thing over here, we look for realistic results.</p>
+
+    <form id="bookingForm">
+        
+        <div class="section-title">01. Royal Client Profile</div>
+
+        <label for="clientName">Full Name:</label>
+        <input type="text" id="clientName" placeholder="e.g. Sarah Jones" required>
+
+        <label for="clientAge">Age:</label>
+        <input type="number" id="clientAge" placeholder="e.g. 23" min="5" required>
+
+        <label for="clientGender">Gender / Royalty:</label>
+        <select id="clientGender">
+            <option>Queen</option>
+            <option>King</option>
+            <option>Other / Prefer not to say</option>
+        </select>
+
+        <label for="clientPhone">Phone Number:</label>
+        <input type="tel" id="clientPhone" placeholder="e.g. 07712 345678" required>
+
+        <div class="section-title">02. Booking Parameters</div>
+
+        <label for="hasInspo">Do you have an inspiration picture for this style?</label>
+        <select id="hasInspo" onchange="toggleInspoField()">
+            <option value="No">No, I'll describe it / Use standard style</option>
+            <option value="Yes">Yes, I have an inspiration image</option>
+        </select>
+        <div id="inspoAlert" class="hidden-field" style="color: #666; font-size: 12px; font-style: italic; padding-top: 5px;">
+            * Remember to attach your photo on WhatsApp right after sending this form request text!
+        </div>
+        
+        <label for="location">Where will we be braiding?</label>
+        <select id="location" onchange="toggleLocationFields()">
+            <option value="Helens House">At Helen's House (Studio appointment)</option>
+            <option value="Clients House">At Your House (Mobile house call)</option>
+        </select>
+
+        <!-- Dynamic Studio Address Box -->
+        <div id="helensAddressBox" class="address-box">
+            <strong>📍 Helen's Studio Location:</strong><br>
+            76 Queens Walk, PE2 9AW
+        </div>
+
+        <!-- Dynamic House Call Input Box -->
+        <div id="clientsAddressContainer" class="hidden-field">
+            <label for="clientAddress">Your Home Address & Postcode:</label>
+            <textarea id="clientAddress" rows="2" placeholder="e.g. 12 High Street, Peterborough, PE1 1XX"></textarea>
+        </div>
+
+        <label for="date">Preferred Appointment Date:</label>
+        <input type="date" id="date" required>
+
+        <label for="time">Preferred Appointment Time:</label>
+        <select id="time">
+            <option>07:00 AM</option>
+            <option>08:00 AM</option>
+            <option>09:00 AM</option>
+            <option>10:00 AM</option>
+            <option>11:00 AM</option>
+            <option>12:00 PM (Noon)</option>
+            <option>01:00 PM</option>
+            <option>02:00 PM</option>
+            <option>03:00 PM</option>
+        </select>
+
+        <div class="section-title">03. Crown Customization</div>
+        
+        <label for="style">Braid Style:</label>
+        <select id="style" onchange="toggleCustomStyleField()">
+            <option value="Knotless Braids">Knotless Braids</option>
+            <option value="Box Braids">Box Braids</option>
+            <option value="Stitch Braids">Stitch Braids</option>
+            <option value="Cornrows">Cornrows</option>
+            <option value="Boho Braids">Boho Braids</option>
+            <option value="Goddess Braids">Goddess Braids</option>
+            <option value="Twists">Twists</option>
+            <option value="Locks Renewal">Locks Renewal</option>
+            <option value="French Curls">French Curls</option>
+            <option value="Other Style">Other Style (Not on this list)</option>
+        </select>
+
+        <!-- Custom Style Hidden Text Box -->
+        <div id="customStyleContainer" class="hidden-field">
+            <label for="customStyleName">Please type the custom style name:</label>
+            <input type="text" id="customStyleName" placeholder="e.g. Fulani Braids, Butterfly Locs...">
+        </div>
+
+        <label for="size">Braid Size:</label>
+        <select id="size">
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+        </select>
+
+        <label for="length">Desired Braid Length:</label>
+        <select id="length">
+            <option>Bob Length</option>
+            <option>Shoulder Length</option>
+            <option>Armpit Length</option>
+            <option>Mid-Back Length</option>
+            <option>Waist Length</option>
+            <option>Bum Length</option>
+        </select>
+
+        <label for="hairProvider">Who is providing the extensions?</label>
+        <select id="hairProvider">
+            <option value="Client Bringing Own">I am bringing my own hair extensions</option>
+            <option value="Helen to Purchase">Please buy the hair extensions for me</option>
+        </select>
+
+        <label for="color">What is the exact hair colour needed?</label>
+        <input type="text" id="color" placeholder="e.g. 1B, Mix of 4 and 27, Jet Black...">
+
+        <div class="section-title">04. Hair Profile & Prep</div>
+
+        <label for="thickness">Your Hair Thickness / Density:</label>
+        <select id="thickness">
+            <option>Fine / Thin hair</option>
+Use code with caution.
+Normal hair density
+Thick / Very dense hair
+Any hair or scalp concerns?
+None / Healthy Scalp
+Tender-Headed / Sensitive Scalp
+Short Edges / Hair Loss areas
+Do you require a blow-dry service?
+If yes, additional payment will be required depending on hair type, state, and density.
+
+Yes
+No, thanks
+05. Studio Preferences & Rules
+Your Bullet Points & Notes:
+⚠️ HELEN'S GROUND RULES:
+
+Minimum booking age is 5 years old and above.
+Appointment time booking must be respected.
+You must show up with your hair washed, clean, oiled, and completely detangled/ready for braiding (unless you select the blow dry service above). Failure to show up with your hair in an appropriate state will result in the appointment being cancelled and no refund will be made.
+Cancellation must be made 24 hours before service, or deposit is forfeit.
+Deposits are only refundable if I cancel the appointment. No exceptions for client-side issues without prior notice.
+If Helen is to braid at your house, a transport fare will be added to your final bill.
+If your appointment is reviewed and confirmed, Helen will message you in less than 24 hours with the total hair price, and you will need to pay a 10% deposit to lock in your spot.
+
+"He has made everything beautiful in its time."
+— Book of Ecclesiastes 3:11 ✨
+
+
+God bless you!
+Generate & Open WhatsApp 📲
+
+function toggleCustomStyleField() {
+const styleChoice = document.getElementById('style').value;
+const customField = document.getElementById('customStyleContainer');
+if (styleChoice === "Other Style") {
+customField.style.display = "block";
+} else {
+customField.style.display = "none";
+}
+}
+function toggleInspoField() {
+const inspoChoice = document.getElementById('hasInspo').value;
+const alertField = document.getElementById('inspoAlert');
+if (inspoChoice === "Yes") {
+alertField.style.display = "block";
+} else {
+alertField.style.display = "none";
+}
+}
+function toggleLocationFields() {
+const locationChoice = document.getElementById('location').value;
+const helensAddress = document.getElementById('helensAddressBox');
+const clientsAddress = document.getElementById('clientsAddressContainer');
+if (locationChoice === "Helens House") {
+helensAddress.style.display = "block";
+clientsAddress.style.display = "none";
+} else {
+helensAddress.style.display = "none";
+clientsAddress.style.display = "block";
+}
+}
+function sendToWhatsApp() {
+// ========================================================
+// 🚨 ADD YOUR REAL UK PHONE NUMBER HERE LATER 🚨
+// ========================================================
+const myPhoneNumber = "447000000000";
+// ========================================================
+const clientName = document.getElementById('clientName').value || "Not provided";
+const clientAge = document.getElementById('clientAge').value || "Not provided";
+const clientGender = document.getElementById('clientGender').value;
+const clientPhone = document.getElementById('clientPhone').value || "Not provided";
+const hasInspo = document.getElementById('hasInspo').value;
+const locationChoice = document.getElementById('location').value;
+const dateInput = document.getElementById('date').value;
+const time = document.getElementById('time').value;
+let finalLocationString = "";
+let transportNote = "";
+if (locationChoice === "Helens House") {
+finalLocationString = "At Helen's House (76 Queens Walk, PE2 9AW)";
+} else {
+const clientAddrInput = document.getElementById('clientAddress').value;
+finalLocationString = clientAddrInput ? Mobile House Call to: ${clientAddrInput} : "Mobile House Call (Address missing)";
+transportNote = "\n• ⚠️ Note: Client requires a house call. Transport fee applies.";
+}
+let style = document.getElementById('style').value;
+if (style === "Other Style") {
+const customInput = document.getElementById('customStyleName').value;
+style = customInput ? Custom: ${customInput} : "Custom Style (Unspecified)";
+}
+const size = document.getElementById('size').value;
+const length = document.getElementById('length').value;
+const hairProvider = document.getElementById('hairProvider').value;
+const color = document.getElementById('color').value || "Not specified";
+const thickness = document.getElementById('thickness').value;
+const condition = document.getElementById('condition').value;
+const blowdry = document.getElementById('blowdry').value;
+const notes = document.getElementById('notes').value || "None specified";
+let formattedDate = "Not selected";
+if (dateInput) {
+const dateObj = new Date(dateInput);
+formattedDate = dateObj.toLocaleDateString('en-GB', {
+weekday: 'long',
+day: 'numeric',
+month: 'long',
+year: 'numeric'
+});
+}
+let message = ✨ HELEN'S BRAIDING REQUEST ✨\n\n +
+👤 ROYAL CLIENT PROFILE:\n +
+• Identity: ${clientGender}\n +
+• Name: ${clientName}\n +
+• Age: ${clientAge}\n +
+• Phone: ${clientPhone}\n\n;
+if (hasInspo === "Yes") {
+message += 📸 IMAGE REFERENCE:\n[🚨 CLIENT NOTE: I have an inspiration image! I will attach it below this text block!]\n\n;
+}
+message += 📍 SCHEDULE & LOCATION:\n +
+• Date: ${formattedDate}\n +
+• Time Slot: ${time}\n +
+• Location: ${finalLocationString}${transportNote}\n\n +
+💇‍♀️ CROWN DETAILS:\n +
+• Style: ${style}\n +
+• Size: ${size}\n +
+• Length: ${length}\n\n +
+📦 EXTENSION INFO:\n +
+• Provider: ${hairProvider}\n +
+• Colour: ${color}\n\n +
+🧬 HAIR PROFILE & PREP:\n +
+• Density: ${thickness}\n +
+• Scalp Focus: ${condition}\n +
+• Needs Blow Dry: ${blowdry}\n\n +
+📝 CLIENT NOTES:\n${notes}\n\n +
+⚠️ Acknowledged: Will respect booking time, cancellation policy, deposit rules, age limits, hair cleanliness standards, and mobile travel fees.;
+const whatsappUrl = https://whatsapp.com{myPhoneNumber}&text=${encodeURIComponent(message)};
+window.open(whatsappUrl, '_blank');
+}
